@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Registration
+{% endblock %}
+
+{% block body %}
+    {{ form_start(form) }}
+        {{ form_row(form.email) }}
+        <div class="row form-row-submit">
+            <div class="col-md-12">
+                <input type="submit" value="Submit" class="btn btn-success" />
+            </div>
+        </div>
+    {{ form_end(form) }}
+{% endblock %}

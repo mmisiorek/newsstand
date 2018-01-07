@@ -1,0 +1,88 @@
+body {
+    background: lightgoldenrodyellow;
+}
+
+.navbar {
+    border-radius: 0px !important;
+}
+
+.box {
+    background-color: #e9e9e9;
+    margin: 20px 10%;
+    border-radius: 10px;
+    border: 1px solid black;
+    padding: 20px 5% 50px 5%;
+}
+
+.form-row-submit {
+    text-align: right;
+}
+
+.form-row {
+    margin-bottom: 20px;
+}
+
+.news {
+    background-color: white;
+    border: 1px solid black;
+    padding: 30px 20px;
+    margin-bottom: 50px;
+}
+
+.news-collection > .news:last-child {
+    margin-bottom: 0px;
+}
+
+.news-head {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 50px;
+    font-family: headliner;
+}
+
+.news-title {
+    font-size: 48px;
+}
+
+.news-body {
+    text-align: justify;
+    min-height: 250px;
+}
+
+.news-body.columns {
+    column-count: 3;
+    column-gap: 20px;
+    column-rule-style: solid;
+    column-rule-width: 1px;
+    column-rule-color: black;
+}
+
+.news-image {
+    float: right;
+    max-width: 200px;
+    max-height: 200px;
+    display: block;
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+@media(max-width: 1300px) {
+    .news-body.columns {
+        column-count: 2;
+    }
+}
+
+@media(max-width: 900px) {
+    .news-body.columns {
+        column-count: 1;
+    }
+}
+
+.news-header .actions {
+    text-align: right;
+}
+
+@font-face {
+    font-family: headliner;
+    src: url(/fonts/HeadlinerNo-45.ttf);
+}

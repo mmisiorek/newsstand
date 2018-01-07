@@ -1,0 +1,68 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        .news {
+            background-color: white;
+            border: 1px solid black;
+            padding: 30px 20px;
+            margin-bottom: 50px;
+        }
+
+        .news-collection > .news:last-child {
+            margin-bottom: 0px;
+        }
+
+        .news-head {
+            width: 100%;
+            text-align: center;
+            margin-bottom: 50px;
+            font-family: headliner;
+        }
+
+        .news-title {
+            font-size: 48px;
+        }
+
+        .news-body {
+            text-align: justify;
+            min-height: 250px;
+        }
+
+        .news-body.columns {
+            column-count: 2;
+            column-gap: 20px;
+            column-rule-style: solid;
+            column-rule-width: 1px;
+            column-rule-color: black;
+        }
+
+        .news-image {
+            float: right;
+            max-width: 200px;
+            max-height: 200px;
+            display: block;
+            margin-left: 20px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="news">
+        <div class="news-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <b>Created at:</b> {{ news.createdAt|date('F jS \\a\\t g:ia') }} <br>
+                    <b>User:</b> {{ news.user.email }}
+                </div>
+            </div>
+        </div>
+        <div class="news-head">
+            <h1 class="news-title">{{ news.title }}</h1>
+        </div>
+        <div class="news-body">
+            {{ news.body|raw }}
+        </div>
+    </div>
+</body>
+</html>

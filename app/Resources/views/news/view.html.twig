@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    News view
+{% endblock %}
+
+{% block body %}
+    <div class="news">
+        <div class="news-header">
+            <div class="row">
+                <div class="col-md-6">
+                    <b>Created at:</b> {{ news.createdAt|date('F jS \\a\\t g:ia') }} <br>
+                    <b>User:</b> {{ news.user.email }}
+                </div>
+                <div class="col-md-6 actions">
+                    <a href="{{ path('pdf_news', {id: news.id}) }}" class="btn btn-info">Download PDF</a>
+                </div>
+            </div>
+        </div>
+        <div class="news-head">
+            <h1 class="news-title">{{ news.title }}</h1>
+        </div>
+        <div class="news-body {% if news.body|wordCount > 300 %}columns{% endif %}">
+            <img src="{{ news.photoPath|pathToUrl }}" class="news-image" />
+
+            {{ news.body|raw }}
+        </div>
+    </div>
+{% endblock %}

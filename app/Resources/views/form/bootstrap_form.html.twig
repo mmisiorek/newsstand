@@ -1,0 +1,21 @@
+{% block form_row %}
+    <div class="row form-row">
+        <div class="col-md-4">
+            {{ form_label(form) }}
+        </div>
+        <div class="col-md-8">
+            {{ form_widget(form, {'attr': {'class': 'form-control'}}) }}
+        </div>
+    </div>
+{% endblock %}
+
+{% block ckeditor_widget %}
+    <div>
+        <textarea {{ block('widget_attributes') }}></textarea>
+        <script type="text/javascript">
+            $(function() {
+                CKEDITOR.replace("{{ form.vars.id }}");
+            });
+        </script>
+    </div>
+{% endblock %}

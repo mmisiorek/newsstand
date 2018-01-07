@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('libs/bootstrap/css/bootstrap-theme.css') }}" />
+        <link rel="stylesheet" type="text/css" href="{{ asset('css/base.css') }}" />
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <script type="text/javascript" src="{{ asset('libs/jquery/jquery.min.js') }}"></script>
+    </head>
+    <body>
+        <nav class="navbar navbar-default navbar-inverse">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    {% if app.user %}
+                        <a href="{{ path('user_news_list') }}" class="navbar-brand">Newsstand</a>
+                    {% else %}
+                        <a href="{{ path('homepage') }}" class="navbar-brand">Newsstand</a>
+                    {% endif %}
+                </div>
+
+                <ul class="nav navbar-nav">
+                    <li><a href="{{ path('homepage') }}">Public list</a></li>
+                    {% if app.user %}
+                        <li><a href="{{ path('user_news_list') }}">My news list</a></li>
+                        {% if is_granted('publish', 'news') %}
+                            <li><a href="{{ path('add_news') }}">Add news</a></li>
+                        {% endif %}
+                    {% endif %}
+                    <li><a href="{{ path('feed_news') }}">Feed</a></li>
+                </ul>
+
+                {% if not app.user %}
+                    <ul class="nav navbar-nav navbar-right">
+                    <li><a href="{{ path('registration') }}">Registration</a></li>
+                    <li><a href="{{ path('login') }}">Login</a></li>
+                </ul>
+                {% else %}
+                    <ul class="nav navbar-nav navbar-right">
+                    <li><a href="/logout">Logout</a></li>
+                </ul>
+                {% endif %}
+            </div>
+        </nav>
+        <div class="box">
+            <h1>{{ block('title') }}</h1>
+            <br><br>
+            {% if app.session.flashbag.has('success') %}
+                <div class="alert alert-success">
+                    <ul>
+                        {% for success in app.session.flashbag.get('success') %}
+                            <li>{{ success }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <br><br>
+            {% endif %}
+            {% if app.session.flashbag.has('failure') %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for failure in app.session.flashbag.get('failure') %}
+                            <li>{{ failure }}</li>
+                        {% endfor %}
+                    </ul>
+                </div>
+                <br><br>
+            {% endif %}
+            <div class="body">
+                {% block body %}{% endblock %}
+            </div>
+        </div>
+        <script type="text/javascript" src="{{ asset('libs/ckeditor/ckeditor.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('libs/bootstrap/js/bootstrap.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

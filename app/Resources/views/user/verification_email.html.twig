@@ -1,0 +1,9 @@
+Hello,<br><br>
+
+Someone tried to register an account for the e-mail address {{ user.email }} at the site: <a href="{{ app.request.getSchemeAndHttpHost() }}">{{ app.request.getSchemeAndHttpHost() }}</a>. If it was not you, please ignore this e-mail.<br><br>
+
+To make your account fully activated please click on the link below. <br>
+<a href="{{ app.request.getSchemeAndHttpHost() ~ path('user_verification', {hash: user.verificationHash}) }}">{{ app.request.getSchemeAndHttpHost() ~ path('user_verification', {hash: user.verificationHash}) }}</a> <br><br>
+
+Best regards,<br>
+Your Administrator

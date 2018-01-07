@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+    Public news list
+{% endblock %}
+
+{% block body %}
+    <div class="news-collection">
+        {% for news in newsCollection %}
+            <div class="news">
+                <div class="news-header">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <b>Created at:</b> {{ news.createdAt|date('F jS \\a\\t g:ia') }} <br>
+                            <b>User:</b> {{ news.user.email }}
+                        </div>
+                        <div class="col-md-6 actions">
+                            <a href="{{ path('pdf_news', {id: news.id}) }}" class="btn btn-info">Download PDF</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="news-head">
+                    <h1 class="news-title"><a href="{{ path('news_view', {id: news.id}) }}">{{ news.title }}</a></h1>
+                </div>
+                <div class="news-body">
+                    <img src="{{ news.photoPath|pathToUrl }}" class="news-image" />
+
+                    {{ news.body|first120Words|raw }} {% if news.body|wordCount > 120 %} (...) <br><br><a href="{{ path('news_view', {id: news.id}) }}">Click here to see the full message.</a> {% endif %}
+                </div>
+            </div>
+        {% else %}
+            At the moment there are no submitted news.
+        {% endfor %}
+    </div>
+{% endblock %}
